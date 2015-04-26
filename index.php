@@ -14,6 +14,7 @@
   </head>
 
   <body>
+    <div id="fb-root"></div>
     <div id="welcome">
       <h1>Welcome <span class="first_name">Player</span></h1>
       <img class="profile" src="images/profile.png" />
