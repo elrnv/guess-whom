@@ -9,7 +9,7 @@
     <script src="scripts/core.js"></script>
     <script src="scripts/ui.js"></script>
     <!--<script src="scripts/game.js"></script>-->
-    <link href="style/style.css" rel="stylesheet" type="text/css">
+    <link href="layout/style.css" rel="stylesheet" type="text/css">
 
     <!--[if IE]><script src="scripts/excanvas.js"></script><![endif]-->
   </head>
@@ -35,9 +35,6 @@
               <img src="images/profile.png" class="profile small" />
               <div class="namecontainer">
                 <span class="rank">1</span>. <span class="name">Ali</span>
-              </div>
-              <div class="scorecontainer">
-                Score <span class="score">99</span>
               </div>
             </li>
           </ul>

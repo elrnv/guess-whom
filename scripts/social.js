@@ -109,7 +109,7 @@ var onStatusChange = function(response) {
     getMe(function() {
       getPermissions(function() {
         if( hasPermission('user_friends') ) {
-          getFriends(function() {
+          getInvitableFriends(function() {
             renderWelcome();
             onLeaderboard();
             showHome();

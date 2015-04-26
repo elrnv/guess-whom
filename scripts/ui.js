@@ -1,28 +1,12 @@
-var renderScores = function() {
-  var list = $('#leaderboard .scrollable_list');
-  list.children().remove('.item');
-  var template = list.find('.template');
-  for( var i = 0; i < friendCache.scores.length; i++ ) {
-    var item = template.clone().removeClass('template').addClass('item');
-    item.attr('data-id',friendCache.scores[i].user.id);
-    item.attr('data-first-name',friendCache.scores[i].user.first_name);
-    item.find('.rank').html(i+1);
-    item.find('.score').html(friendCache.scores[i].score);
-    item.find('.name').html(friendCache.scores[i].user.name);
-    item.find('.profile').attr('src',friendCache.scores[i].user.picture.data.url);
-    list.append(item);
-  }
-}
-
-var renderFriends = function() {
+var renderInvitableFriends = function() {
   var list = $('#fs .scrollable_list');
   list.children().remove('.item');
   var template = list.find('.template');
-  for( var i = 0; i < friendCache.friends.length; i++ ) {
+  for( var i = 0; i < friendCache.invitable_friends.length; i++ ) {
     var item = template.clone().removeClass('template').addClass('item');
-    item.attr('data-id',friendCache.friends[i].id);
-    item.find('.name').html(friendCache.friends[i].name);
-    item.find('.profile').attr('src',friendCache.friends[i].picture.data.url);
+    item.attr('data-id',friendCache.invitable_friends[i].id);
+    item.find('.name').html(friendCache.invitable_friends[i].name);
+    item.find('.profile').attr('src',friendCache.invitable_friends[i].picture.data.url);
     list.append(item);
   }
   list.children().remove('.loading');
@@ -36,7 +20,7 @@ var renderWelcome = function() {
 }
 
 var onLeaderboard = function() {
-  renderFriends();
+  renderInvitableFriends();
   $('#fs').removeClass('hidden');
 }
 
