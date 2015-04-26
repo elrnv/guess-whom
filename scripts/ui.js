@@ -15,7 +15,7 @@ var renderScores = function() {
 }
 
 var renderFriends = function() {
-  var list = $('#friendselector .scrollable_list');
+  var list = $('#fs .scrollable_list');
   list.children().remove('.item');
   var template = list.find('.template');
   for( var i = 0; i < friendCache.friends.length; i++ ) {
@@ -25,6 +25,8 @@ var renderFriends = function() {
     item.find('.profile').attr('src',friendCache.friends[i].picture.data.url);
     list.append(item);
   }
+  list.children().remove('.loading');
+  list.children().remove('.template');
 }
 
 var renderWelcome = function() {
@@ -34,12 +36,8 @@ var renderWelcome = function() {
 }
 
 var onLeaderboard = function() {
-  //renderFriends();
-  console.log("STUFF");
+  renderFriends();
   $('#fs').removeClass('hidden');
-  //getScores(function() {
-  //  //renderScores();
-  //});
 }
 
 var showHome = function() {
