@@ -80,6 +80,8 @@ var getRequestInfo = function(id, callback) {
 
 var hasPermission = function(permission) {
   for( var i in friendCache.permissions ) {
+    console.log(i + " " + friendCache.permissions[i].permission + " : " +
+        friendCache.permissions[i].status);
     if(
       friendCache.permissions[i].permission == permission
       && friendCache.permissions[i].status == 'granted' )
@@ -89,7 +91,7 @@ var hasPermission = function(permission) {
 }
 
 var login = function(callback) {
-    FB.login(callback);
+    FB.login(callback, {scope: 'user_friends'});
 }
 
 var loginCallback = function(response) {
@@ -109,8 +111,7 @@ var onStatusChange = function(response) {
         if( hasPermission('user_friends') ) {
           getFriends(function() {
             renderWelcome();
-            renderFriends();
-            //onLeaderboard();
+            onLeaderboard();
             showHome();
           });
         } else {

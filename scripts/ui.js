@@ -29,19 +29,15 @@ var renderFriends = function() {
 }
 
 var renderWelcome = function() {
-debugger;
-console.log("Stuff2");
   var welcome = $('#welcome');
   welcome.find('.first_name').html(friendCache.me.first_name);
   welcome.find('.profile').attr('src',friendCache.me.picture.data.url);
-console.log("Stuff4");
 }
 
 var onLeaderboard = function() {
   //renderFriends();
-console.log("Stuff0");
+  console.log("STUFF");
   $('#fs').removeClass('hidden');
-console.log("Stuff");
   //getScores(function() {
   //  //renderScores();
   //});
