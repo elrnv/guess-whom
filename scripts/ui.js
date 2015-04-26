@@ -15,6 +15,7 @@ var renderScores = function() {
 }
 
 var renderFriends = function() {
+  debug;
   var list = $('#friendselector .scrollable_list');
   list.children().remove('.item');
   var template = list.find('.template');
@@ -28,7 +29,7 @@ var renderFriends = function() {
 }
 
 var renderWelcome = function() {
-
+debugger;
 console.log("Stuff2");
   var welcome = $('#welcome');
   welcome.find('.first_name').html(friendCache.me.first_name);
