@@ -108,12 +108,12 @@ var onStatusChange = function(response) {
         if( hasPermission('user_friends') ) {
           getFriends(function() {
             renderWelcome();
-            //onLeaderboard();
-            //showHome();
+            onLeaderboard();
+            showHome();
           });
         } else {
           renderWelcome();
-          //showHome();
+          showHome();
         }
       });
     });
