@@ -14,6 +14,19 @@ var renderScores = function() {
   }
 }
 
+var renderFriends = function() {
+  var list = $('#friendselector .scrollable_list');
+  list.children().remove('.item');
+  var template = list.find('.template');
+  for( var i = 0; i < friendCache.friends.length; i++ ) {
+    var item = template.clone().removeClass('template').addClass('item');
+    item.attr('data-id',friendCache.friends[i].id);
+    item.find('.name').html(friendCache.friends[i].name);
+    item.find('.profile').attr('src',friendCache.friends[i].picture.data.url);
+    list.append(item);
+  }
+}
+
 var renderWelcome = function() {
   var welcome = $('#welcome');
   welcome.find('.first_name').html(friendCache.me.first_name);
@@ -21,14 +34,15 @@ var renderWelcome = function() {
 }
 
 var onLeaderboard = function() {
-  getScores(function() {
-    renderScores();
-    $('#home').find('.panel.right').addClass('hidden');
-    $('#leaderboard').removeClass('hidden');
-  });
+  //renderFriends();
+  console.log("STUFF");
+  $('#fs').removeClass('hidden');
+  //getScores(function() {
+  //  //renderScores();
+  //});
 }
 
 var showHome = function() {
-  //$('section').addClass('hidden');
-  //$('#home').removeClass('hidden');
+  $('section').addClass('hidden');
+  $('#home').removeClass('hidden');
 }
