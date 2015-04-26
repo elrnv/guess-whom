@@ -11,7 +11,8 @@ var friendCache = {
   apprequests: [],
   scores: [],
   games: [],
-  reRequests: {}
+  reRequests: {},
+  mutual_friends: []
 };
 
 var getMe = function(callback) {
@@ -51,4 +52,14 @@ var onStatusChange = function(response) {
 
 var onAuthResponseChange = function(response) {
     console.log('onAuthResponseChange', response);
+}
+
+var getMutualFriends(id, callback) = function(callback) {
+  FB.api(String(id), { fields: 'context.fields(mutual_friends)' }, function(response) {
+    if ( response.error ) {
+      console.error('getMutualFriends', response.error);
+      return;
+    }
+    if(callback) callback(response);
+  });
 }
