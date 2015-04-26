@@ -57,6 +57,7 @@ var getPermissions = function(callback) {
 }
 
 var getFriends = function(callback) {
+console.log("getFriends");
   getFriendCacheData('friends', callback, {fields: 'id,name,first_name,picture.width(120).height(120)',limit: 8});
 }
 

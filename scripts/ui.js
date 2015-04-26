@@ -15,8 +15,7 @@ var renderScores = function() {
 }
 
 var renderFriends = function() {
-  debug;
-  var list = $('#friendselector .scrollable_list');
+  var list = $('#fs scrollable_list');
   list.children().remove('.item');
   var template = list.find('.template');
   for( var i = 0; i < friendCache.friends.length; i++ ) {
@@ -35,7 +34,7 @@ var renderWelcome = function() {
 }
 
 var onLeaderboard = function() {
-  //renderFriends();
+  renderFriends();
   console.log("STUFF");
   $('#fs').removeClass('hidden');
   //getScores(function() {
