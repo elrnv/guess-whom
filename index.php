@@ -16,15 +16,12 @@
 
   <body>
     <div id="fb-root"></div>
-<<<<<<< HEAD
     <div id="welcome">
       <h1>Welcome <span class="first_name">Player</span></h1>
       <img class="profile" src="images/profile.png" />
       <h1> Your friend <span class="friend_name">Player</span></h1>
       <img class="frd_profile" src="images/profile.png" />
     </div>
-=======
-
     <section id="home" class="hidden">
       <div id="welcome">
         <h1>Welcome <span class="first_name">Player</span></h1>
@@ -52,6 +49,5 @@
         </div>
       </div>
     </section>
->>>>>>> 708bd5fcc7acd3e056e4e0f5ca371c22092e620f
   </body>
 </html>
