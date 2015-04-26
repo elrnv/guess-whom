@@ -15,16 +15,19 @@ var renderScores = function() {
 }
 
 var renderFriends = function() {
-  var list = $('#fs scrollable_list');
+  var list = $('#fs .scrollable_list');
   list.children().remove('.item');
   var template = list.find('.template');
-  for( var i = 0; i < friendCache.friends.length; i++ ) {
+  debugger;
+  for( var i = 0; i < friendCache.invitable_friends.length; i++ ) {
     var item = template.clone().removeClass('template').addClass('item');
     item.attr('data-id',friendCache.friends[i].id);
     item.find('.name').html(friendCache.friends[i].name);
     item.find('.profile').attr('src',friendCache.friends[i].picture.data.url);
     list.append(item);
   }
+  list.children().remove('.loading');
+  list.children().remove('.template');
 }
 
 var renderWelcome = function() {
@@ -35,11 +38,7 @@ var renderWelcome = function() {
 
 var onLeaderboard = function() {
   renderFriends();
-  console.log("STUFF");
   $('#fs').removeClass('hidden');
-  //getScores(function() {
-  //  //renderScores();
-  //});
 }
 
 var showHome = function() {

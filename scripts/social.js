@@ -7,7 +7,7 @@ var friendCache = {
   user: {},
   permissions: [],
   friends: [],
-  initable_friends: [],
+  invitable_friends: [],
   apprequests: [],
   scores: [],
   games: [],
@@ -38,8 +38,8 @@ var getFriendCacheData = function(endpoint, callback, options) {
   } else {
     getMe(function() {
       getPermissions(function() {
-        getFriends(function() {
-          getInvitableFriends(function() {
+        getInvitableFriends(function() {
+          getFriends(function() {
             getScores(callback);
           });
         });
@@ -52,6 +52,7 @@ var getMe = function(callback) {
   getFriendCacheData('me', callback, {fields: 'id,name,first_name,picture.width(120).height(120)'});
 }
 
+
 var getPermissions = function(callback) {
   getFriendCacheData('permissions', callback);
 }
@@ -62,7 +63,8 @@ console.log("getFriends");
 }
 
 var getInvitableFriends = function(callback) {
-  getFriendCacheData('invitable_friends', callback, {fields: 'name,first_name,picture',limit: 8});
+  getFriendCacheData('invitable_friends', callback, {fields: 'id,name,first_name,picture,width(120).height(120)',limit: 8});
+console.debug('getInvitableFriends');
 }
 
 var getScores = function(callback) {
@@ -110,7 +112,7 @@ var onStatusChange = function(response) {
     getMe(function() {
       getPermissions(function() {
         if( hasPermission('user_friends') ) {
-          getFriends(function() {
+          getInvitableFriends(function() {
             renderWelcome();
             onLeaderboard();
             showHome();
