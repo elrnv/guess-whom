@@ -17,6 +17,8 @@
     <div id="welcome">
       <h1>Welcome <span class="first_name">Player</span></h1>
       <img class="profile" src="images/profile.png" />
+      <h1> Your friend <span class="friend_name">Player</span></h1>
+      <img class="frd_profile" src="images/profile.png" />
     </div>
   </body>
 </html>

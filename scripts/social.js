@@ -1,5 +1,5 @@
 var appId = '1127270453965128';
-var appNamespace = 'guess-whom-egor';
+var appNamespace = 'guess-whom-eddie';
 var appCenterURL = 'https:://www.facebook.com/appcenter/' + appNamespace;
 
 var friendCache = {
@@ -125,7 +125,7 @@ var onAuthResponseChange = function(response) {
     console.log('onAuthResponseChange', response);
 }
 
-var getMutualFriends(id, callback) = function(callback) {
+var getMutualFriends = function(id, callback) {
   FB.api(String(id), { fields: 'context.fields(mutual_friends)' }, function(response) {
     if ( response.error ) {
       console.error('getMutualFriends', response.error);
