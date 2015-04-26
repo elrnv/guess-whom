@@ -51,6 +51,7 @@ var getMe = function(callback) {
   getFriendCacheData('me', callback, {fields: 'id,name,first_name,picture.width(120).height(120)'});
 }
 
+
 var getPermissions = function(callback) {
   getFriendCacheData('permissions', callback);
 }
