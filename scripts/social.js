@@ -1,5 +1,5 @@
-var appId = '1127270453965128';
-var appNamespace = 'guess-whom-egor';
+var appId = '1127268377298669';
+var appNamespace = 'guess-whom-eddie';
 var appCenterURL = 'https:://www.facebook.com/appcenter/' + appNamespace;
 
 var friendCache = {
@@ -7,11 +7,12 @@ var friendCache = {
   user: {},
   permissions: [],
   friends: [],
-  initable_friends: [],
+  invitable_friends: [],
   apprequests: [],
   scores: [],
   games: [],
-  reRequests: {}
+  reRequests: {},
+  mutual_friends: []
 };
 
 
@@ -37,8 +38,8 @@ var getFriendCacheData = function(endpoint, callback, options) {
   } else {
     getMe(function() {
       getPermissions(function() {
-        getFriends(function() {
-          getInvitableFriends(function() {
+        getInvitableFriends(function() {
+          getFriends(function() {
             getScores(callback);
           });
         });
@@ -61,7 +62,7 @@ var getFriends = function(callback) {
 }
 
 var getInvitableFriends = function(callback) {
-  getFriendCacheData('invitable_friends', callback, {fields: 'name,first_name,picture',limit: 8});
+  getFriendCacheData('invitable_friends', callback, {fields: 'id,name,first_name,picture.width(120).height(120)',limit: 8});
 }
 
 var getScores = function(callback) {
@@ -113,6 +114,7 @@ var onStatusChange = function(response) {
             getFriends(function() {
               renderWelcome();
               renderOpponents();
+              getMutualFriends(friendCache.friends[0].id); 
               showHome();
             });
           });
@@ -127,4 +129,16 @@ var onStatusChange = function(response) {
 
 var onAuthResponseChange = function(response) {
     console.log('onAuthResponseChange', response);
+}
+
+var getMutualFriends = function(id, callback) {
+  FB.api('/' + String(id)  , { 'fields': 'context.fields(mutual_friends)'}, function(response) {
+    if ( response.error ) {
+      return;
+    } else {
+      friendCache['mutual_friends'] = response.data ? response.data : response;
+    }
+    if(callback) callback(response);
+  });
+  console.log(friendCache['mutual_friends']);
 }

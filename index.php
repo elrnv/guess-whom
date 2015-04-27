@@ -22,7 +22,6 @@
 
   <body>
     <div id="fb-root"></div>
-
     <section id="home" class="container hidden">
       <h1>Guess Whom?</h1>
       <h2>Welcome <span class="first_name">Player</span>. Choose a friend to
@@ -86,10 +85,6 @@
           </ul>
         </div>
       </div>
-      <form>
-        <input type="text" name="question" id="question" placeholder="Ask Egor a question!">
-        <a id="ask" href="#">Ask</a>
-      </form>
     </section>
   </body>
 </html>
