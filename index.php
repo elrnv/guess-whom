@@ -40,19 +40,26 @@
             <button class="friendPermissions">Grant user_friends</button>
           </div>
           <div class="friends">
-            <ul class="faces" id="invitee-list">
+            <h3>Friends already playing "Guess Whom?":</h3>
+            <ul class="faces" id="playing-friends-list">
               <li class="loading">Loading...</li>
               <li class="template">
                 <a href="#"><img class="profile" 
-                data-toggle="tooltip" title="Stuff" width="80px"></a>
+                data-toggle="tooltip" title="" width="80px"></a>
+                <!--<a href="#" class="guess"></a>-->
+              </li>
+            </ul>
+            <h3>Invite friends to play:</h3>
+            <ul class="faces" id="invitee-list">
+              <li class="template">
+                <a href="#"><img class="profile" 
+                data-toggle="tooltip" title="" width="80px"></a>
                 <!--<a href="#" class="guess"></a>-->
               </li>
             </ul>
           </div>
-
         </div>
       </div>
-
     </section>
 
     <section id="game" class="container hidden">

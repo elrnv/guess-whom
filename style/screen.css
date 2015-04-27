@@ -152,6 +152,13 @@ h2
 	font-weight: normal;
 }
 
+h3
+{
+	padding-bottom: 0.5em;
+	font-size: 0.7em;
+	font-weight: normal;
+}
+
 #question
 {
 	width: 420px;

@@ -1,23 +1,28 @@
 var renderOpponents = function() {
-  var list = $('.content #invitee-list');
-  list.children().remove('.item');
-  var template = list.find('.template');
+  var plist = $('.content #playing-friends-list');
+  plist.children().remove('.item');
+  var template = plist.find('.template');
   for( var i = 0; i < friendCache.friends.length; i++ ) {
     var item = template.clone().removeClass('template').addClass('item');
     item.attr('data-id',friendCache.friends[i].id);
     item.find('.profile').attr('title',friendCache.friends[i].name);
     item.find('.profile').attr('src',friendCache.friends[i].picture.data.url);
-    list.append(item);
+    plist.append(item);
   }
+  plist.children().remove('.template');
+
+  var ilist = $('.content #invitee-list');
+  ilist.children().remove('.item');
+  template = ilist.find('.template');
   for( var i = 0; i < friendCache.invitable_friends.length; i++ ) {
     var item = template.clone().removeClass('template').addClass('item');
     item.attr('data-id',friendCache.invitable_friends[i].id);
     item.find('.profile').attr('title',friendCache.invitable_friends[i].name);
     item.find('.profile').attr('src',friendCache.invitable_friends[i].picture.data.url);
-    list.append(item);
+    ilist.append(item);
   }
-  list.children().remove('.loading');
-  list.children().remove('.template');
+  plist.children().remove('.loading');
+  ilist.children().remove('.template');
   $('[data-toggle="tooltip"]').tooltip({placement : "auto", html : true})
 }
 
