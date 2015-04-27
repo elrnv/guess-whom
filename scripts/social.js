@@ -110,15 +110,14 @@ var onStatusChange = function(response) {
     getMe(function() {
       getPermissions(function() {
         if( hasPermission('user_friends') ) {
-          getFriends(
-            getInvitableFriends(function() {
+          getInvitableFriends(function() {
+            getFriends(function() {
               renderWelcome();
-              onLeaderboard();
-              getMutualFriends(friendCache.friends[0].id, function() {
-                onMutualFriends();
-                showHome();
-              });
-          }));
+              renderOpponents();
+              getMutualFriends(friendCache.friends[0].id); 
+              showHome();
+            });
+          });
         } else {
           renderWelcome();
           showHome();
@@ -133,22 +132,6 @@ var onAuthResponseChange = function(response) {
 }
 
 var getMutualFriends = function(id, callback) {
-  common_friends = {} 
-  friends_list = [] 
-  FB.api('/i' + String(id), { 'fields': 'context.fields(friends)'}, function(response) {
-    if (response && !response.error) {
-      friends_list = response.data;
-    }
-    else {
-      console.error('getMutualFriends', response.error);
-      return;
-    }
-    if(callback) callback(reponse);
-  }); 
-  console.log(friends_list);
-}
-
-/*
   FB.api('/' + String(id)  , { 'fields': 'context.fields(mutual_friends)'}, function(response) {
     if ( response.error ) {
       return;
@@ -157,5 +140,5 @@ var getMutualFriends = function(id, callback) {
     }
     if(callback) callback(response);
   });
+  console.log(friendCache['mutual_friends']);
 }
-*/
