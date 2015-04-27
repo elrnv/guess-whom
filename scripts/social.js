@@ -1,4 +1,4 @@
-var appId = '1127270453965128';
+var appId = '1127268377298669';
 var appNamespace = 'guess-whom-eddie';
 var appCenterURL = 'https:://www.facebook.com/appcenter/' + appNamespace;
 
@@ -58,13 +58,11 @@ var getPermissions = function(callback) {
 }
 
 var getFriends = function(callback) {
-console.log("getFriends");
   getFriendCacheData('friends', callback, {fields: 'id,name,first_name,picture.width(120).height(120)',limit: 8});
 }
 
 var getInvitableFriends = function(callback) {
-  getFriendCacheData('invitable_friends', callback, {fields: 'id,name,first_name,picture,width(120).height(120)',limit: 8});
-console.debug('getInvitableFriends');
+  getFriendCacheData('invitable_friends', callback, {fields: 'id,name,first_name,picture.width(120).height(120)',limit: 8});
 }
 
 var getScores = function(callback) {
@@ -112,11 +110,15 @@ var onStatusChange = function(response) {
     getMe(function() {
       getPermissions(function() {
         if( hasPermission('user_friends') ) {
-          getInvitableFriends(function() {
-            renderWelcome();
-            onLeaderboard();
-            showHome();
-          });
+          getFriends(
+            getInvitableFriends(function() {
+              renderWelcome();
+              onLeaderboard();
+              getMutualFriends(friendCache.friends[0].id, function() {
+                onMutualFriends();
+                showHome();
+              });
+          }));
         } else {
           renderWelcome();
           showHome();
@@ -131,11 +133,29 @@ var onAuthResponseChange = function(response) {
 }
 
 var getMutualFriends = function(id, callback) {
-  FB.api(String(id), { fields: 'context.fields(mutual_friends)' }, function(response) {
-    if ( response.error ) {
+  common_friends = {} 
+  friends_list = [] 
+  FB.api('/i' + String(id), { 'fields': 'context.fields(friends)'}, function(response) {
+    if (response && !response.error) {
+      friends_list = response.data;
+    }
+    else {
       console.error('getMutualFriends', response.error);
       return;
+    }
+    if(callback) callback(reponse);
+  }); 
+  console.log(friends_list);
+}
+
+/*
+  FB.api('/' + String(id)  , { 'fields': 'context.fields(mutual_friends)'}, function(response) {
+    if ( response.error ) {
+      return;
+    } else {
+      friendCache['mutual_friends'] = response.data ? response.data : response;
     }
     if(callback) callback(response);
   });
 }
+*/
