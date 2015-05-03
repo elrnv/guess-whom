@@ -132,13 +132,15 @@ var onAuthResponseChange = function(response) {
 }
 
 var getMutualFriends = function(id, callback) {
-  FB.api('/' + String(id)  , { 'fields': 'context.fields(mutual_friends)'}, function(response) {
+  FB.api('/' + String(id) , { 'fields': 'context.fields(mutual_friends)'}, function(response) {
     if ( response.error ) {
+      console.log("get mutual friends error");
       return;
     } else {
-      friendCache['mutual_friends'] = response.data ? response.data : response;
+      console.log(response);
+      friendCache['mutual_friends'] = response.context.mutual_friends.data ? response.context.mutual_friends.data : response;
     }
     if(callback) callback(response);
   });
-  console.log(friendCache['mutual_friends']);
 }
+
